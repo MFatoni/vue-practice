@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.1.3/dist/vue-router.js"></script>
+    <style>
+        .active {
+            color: blue;
+            background-color: aqua;
+        }
+
+        .displayError {
+            color: red;
+            background-color: cadetblue;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 2s
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        .shiftx-enter-active {
+            animation: shift-in 2s;
+        }
+
+        .shiftx-leave-active {
+            animation: shift-in 2s reverse;
+        }
+
+        @keyframes shift-in {
+            0% {
+                transform: rotateX(0deg);
+            }
+
+            25% {
+                transform: rotateX(90deg);
+            }
+
+            50% {
+                transform: rotateX(120deg);
+            }
+
+            75% {
+                transform: rotateX(180deg);
+            }
+
+            100% {
+                transform: rotateX(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="intro" style="text-align: center;">
+        <h1>{{message}}</h1>
+    </div>
+    <div id="app">
+        <h1>{{name}}</h1>
+    </div>
+    <div id="vue_det">
+        <h1>Firstname : {{firstname}}</h1>
+        <h1>Lastname : {{lastname}} </h1>
+        <div v-html="htmlcontent"></div>
+        <img v-bind:src="imgsrc" width="100" height="100" />
+    </div>
+    <div id="component1">
+        <inicomponent></inicomponent>
+    </div>
+    <div id="component2">
+        <inicomponent></inicomponent>
+    </div>
+    <div id="app2">
+        <span v-once>Message: {{msg}}</span>
+    </div>
+    <div id="example">
+        <p>Original Message : "{{message}}"</p>
+        <p>Computed reversed message: "{{reversedMessage}}"</p>
+    </div>
+    <div id="databinding">
+        Kilometers : <input type="text" v-model="kilometers" />
+        Meters : <input type="text" v-model="meters" />
+    </div><br />
+    <div id="databinding1">
+        {{title}}<br />
+        <!-- <a href="hreflink" target="_blank">Click Me</a><br />
+        <a href="{{hreflink}}" target="_blank">Click Me</a><br /> -->
+        <!-- <a v-bind:href="hreflink" target="_blank">Click Me</a><br /> -->
+        <a :href="hreflink" target="_blank">Click Me</a><br />
+    </div>
+    <div id="classbinding">
+        <div v-bind:class="{active:isactive, 'displayError':hasError}">
+            <b>{{title}}</b>
+        </div>
+    </div>
+    <div id="databinding2">
+        <button v-on:click="displaynumbers">Click Me</button>
+        <h2>Add Number 100 + 200 = {{total}}</h2>
+    </div>
+    <div id="databinding3">
+        <div v-bind:style="styleobj" v-on:mouseover="changecolor" v-on:mouseout="originalcolor">
+        </div>
+    </div>
+    <div id="databinding4">
+        <button v-on:click="showdata" v-bind:style="styleobj">Click Me</button>
+        <span style="font-size:25px;"><b>{{show}}</b></span>
+        <h1 v-if="show">This is h1 tag</h1>
+        <h2 v-else>This is h2 tag</h2>
+        <div v-show="show">
+            <b>v-show:</b>
+            <img src="images/icon.png" width="100">
+        </div>
+    </div>
+    <div id="databinding5">
+        <input type="text" v-on:keyup.enter="showinputvalue" v-bind:style="styleobj" placeholder="Enter fruits name">
+        <h1 v-if="items.length>0">Display Fruit Name </h1>
+        <ul>
+            <li v-for="a in items">{{a}}</li>
+        </ul>
+    </div>
+    <div id="databinding6">
+        <button v-on:click="show=!show">Click Me</button>
+        <transition name="fade">
+            <p v-show="show" v-bind:style="styleobj">Animation Example</p>
+        </transition>
+    </div>
+    <div id="databinding7">
+        <button v-on:click="show=!show">Click Me</button>
+        <transition name="shiftx">
+            <p v-show="show">
+                <img src="images/icon.png" style="width:100px;height:100px">
+            </p>
+        </transition>
+    </div>
+    <div id="databinding8">
+        <div v-changestyle>
+            VueJS Directives
+        </div>
+    </div>
+    <div id="app3">
+        <h1>Routing Examples</h1>
+        <p>
+            <router-link to="/route1">Router Link 1</router-link>
+            <router-link to="/route2">Router Link 2</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <div id="databinding9">
+    </div>
+    <div id="component_test">
+        <inicomponent1 :elementtype="'div,red,25,div1'">Mohammad</inicomponent1>
+        <inicomponent1 :elementtype="'h3,green,25,h3tag'">Fatoni</inicomponent1>
+    </div>
+    <div id="app4">
+        <p>Counter : {{counter}}</p>
+        <button @click="counter++">click me</button>
+    </div>
+    <div id="app5">
+        <p>Counter : {{products.id}}</p>
+        <button @click="products.id++">click me</button>
+    </div>
+    <script type="text/javascript" src="js/template.js"></script>
+</body>
+
+</html>
